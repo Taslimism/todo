@@ -9,7 +9,7 @@ const LoginSignup = () => {
 
 	return (
 		<div className='flex items-center w-screen h-screen sm:flex-col md:flex-row'>
-			<div className='mx-auto '>
+			<div className='mx-auto'>
 				<img src={hero} alt='decorative icon' />
 			</div>
 			<div
