@@ -38,6 +38,15 @@ const Form = ({ isSignup, setIsSignup }) => {
 
 	const submitHandler = (data) => {
 		setCredentials(data);
+		if (rememberme) {
+			localStorage.setItem("name", name);
+			localStorage.setItem("password", password);
+			localStorage.setItem("email", email);
+		} else {
+			sessionStorage.setItem("name", name);
+			sessionStorage.setItem("password", password);
+			sessionStorage.setItem("email", email);
+		}
 		if (!isSignup) {
 			const { email, password } = data;
 			if (rememberme) {
@@ -70,16 +79,6 @@ const Form = ({ isSignup, setIsSignup }) => {
 		} else if (isSignup) {
 			setIsSignup(false);
 			navigate("/login");
-		}
-
-		if (rememberme) {
-			localStorage.setItem("name", name);
-			localStorage.setItem("password", password);
-			localStorage.setItem("email", email);
-		} else {
-			sessionStorage.setItem("name", name);
-			sessionStorage.setItem("password", password);
-			sessionStorage.setItem("email", email);
 		}
 	};
 	return (
