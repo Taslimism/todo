@@ -1,11 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import hero from "../assets/login.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const LoginSignup = () => {
 	const [isSignup, setIsSignup] = useState(true);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (
+			localStorage.getItem("name") &&
+			localStorage.getItem("email") &&
+			localStorage.getItem("password")
+		) {
+			navigate("/home");
+		}
+		if (
+			sessionStorage.getItem("name") &&
+			sessionStorage.getItem("email") &&
+			sessionStorage.getItem("password")
+		) {
+			navigate("/home");
+		}
+	}, []);
 
 	return (
 		<div className='flex items-center w-screen h-screen sm:flex-col md:flex-row'>
@@ -40,7 +57,7 @@ const LoginSignup = () => {
 						Sign Up
 					</button>
 				</div>
-				<Form isSignup={isSignup} />
+				<Form isSignup={isSignup} setIsSignup={setIsSignup} />
 			</div>
 		</div>
 	);
